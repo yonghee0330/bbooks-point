@@ -397,6 +397,122 @@
     margin-bottom: 10px;
   }
 
+  /* Illustrated map */
+  .map-wrap {
+    margin-top: 28px;
+    background: white;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    padding: 24px 20px 20px;
+    overflow: hidden;
+  }
+  .map-wrap-title {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--green-dark);
+    margin-bottom: 4px;
+  }
+  .map-wrap-desc {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+  }
+  .map-canvas {
+    position: relative;
+    width: 100%;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    background: linear-gradient(180deg, #FAF6EE 0%, #E8F4EF 100%);
+  }
+  .map-canvas svg {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  .map-marker {
+    cursor: pointer;
+    transition: transform 0.15s;
+  }
+  .map-marker:hover { transform: scale(1.08); }
+  .map-marker circle { transition: fill 0.15s; }
+  .map-marker:hover circle { fill: var(--green-dark); }
+  .map-marker.active circle { fill: var(--green-dark); stroke: var(--amber); stroke-width: 3; }
+  .map-popup {
+    display: none;
+    margin-top: 14px;
+    background: var(--green-light);
+    border: 1.5px solid var(--green);
+    border-radius: var(--radius-sm);
+    padding: 16px 18px;
+  }
+  .map-popup.visible { display: block; }
+  .map-popup-name {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--green-dark);
+    margin-bottom: 6px;
+  }
+  .map-popup-area {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--green-mid);
+    margin-bottom: 8px;
+  }
+  .map-popup-address {
+    font-size: 13px;
+    color: var(--text);
+    line-height: 1.65;
+    margin-bottom: 12px;
+  }
+  .map-popup-actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .map-popup-btn {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 8px 14px;
+    border-radius: 20px;
+    text-decoration: none;
+    transition: opacity 0.15s;
+  }
+  .map-popup-btn:hover { opacity: 0.85; }
+  .map-popup-btn.primary {
+    background: var(--green);
+    color: white;
+  }
+  .map-popup-btn.secondary {
+    background: white;
+    color: var(--green-dark);
+    border: 1px solid var(--green);
+  }
+  .map-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 20px;
+    margin-top: 12px;
+    font-size: 11px;
+    color: var(--text-muted);
+  }
+  .map-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .map-legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .map-legend-dot.store { background: var(--green); }
+  .map-legend-dot.station { background: var(--blue); }
+  .map-legend-dot.landmark { background: var(--amber); }
+
   /* How to use */
   .how-steps {
     display: grid;
@@ -534,6 +650,8 @@
     .bookstore-grid { grid-template-columns: 1fr; }
     .how-steps { grid-template-columns: 1fr; }
     .max-point-boxes { flex-direction: column; }
+    .map-popup-actions { flex-direction: column; }
+    .map-popup-btn { text-align: center; }
   }
 </style>
 </head>
@@ -612,6 +730,162 @@
       <p class="bookstore-desc">'독립출판물이 빛나는 책방'— 일기를 에세이로, 아이의 그림을 그림책으로 만드는 '상상이 현실이 되는 출판사'예요. 세상에 하나뿐인 책들을 만나고, 나만의 이야기도 책으로 남겨보세요.</p>
       <span class="bookstore-link-label">인스타그램 →</span>
     </a>
+  </div>
+
+  <!-- 부천 작은책방 약도 -->
+  <div class="map-wrap">
+    <div class="map-wrap-title">부천 작은책방 약도</div>
+    <p class="map-wrap-desc">역과 주요 거점을 기준으로, 작은책방들의 대략적인 위치예요. 마커를 누르면 주소와 길찾기를 확인할 수 있어요.</p>
+
+    <div class="map-canvas">
+      <svg viewBox="0 0 800 480" xmlns="http://www.w3.org/2000/svg" aria-label="부천 작은책방 약도">
+        <defs>
+          <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+            <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.12"/>
+          </filter>
+          <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#FAF6EE"/>
+            <stop offset="100%" stop-color="#E1F0EA"/>
+          </linearGradient>
+        </defs>
+
+        <!-- 배경 -->
+        <rect width="800" height="480" fill="url(#skyGrad)"/>
+
+        <!-- 구름 -->
+        <ellipse cx="120" cy="55" rx="48" ry="18" fill="white" opacity="0.7"/>
+        <ellipse cx="150" cy="50" rx="32" ry="14" fill="white" opacity="0.8"/>
+        <ellipse cx="650" cy="70" rx="55" ry="20" fill="white" opacity="0.65"/>
+        <ellipse cx="690" cy="65" rx="35" ry="15" fill="white" opacity="0.75"/>
+
+        <!-- 경인천(서쪽) -->
+        <path d="M 0 340 Q 60 330 100 350 Q 140 370 180 360 L 180 480 L 0 480 Z" fill="#C8E6F5" opacity="0.55"/>
+        <text x="55" y="420" font-size="11" fill="#185FA5" opacity="0.6" font-family="Noto Sans KR, sans-serif">경인천</text>
+
+        <!-- 동네 영역 (일러스트 블록) -->
+        <ellipse cx="200" cy="170" rx="95" ry="70" fill="#FAEEDA" opacity="0.55"/>
+        <text x="168" y="175" font-size="11" fill="#633806" opacity="0.45" font-family="Noto Sans KR, sans-serif">심곡·중동</text>
+
+        <ellipse cx="400" cy="280" rx="120" ry="85" fill="#E1F5EE" opacity="0.6"/>
+        <text x="365" y="285" font-size="11" fill="#085041" opacity="0.45" font-family="Noto Sans KR, sans-serif">원미동</text>
+
+        <ellipse cx="560" cy="220" rx="100" ry="75" fill="#FAECE7" opacity="0.55"/>
+        <text x="535" y="225" font-size="11" fill="#712B13" opacity="0.45" font-family="Noto Sans KR, sans-serif">상동</text>
+
+        <ellipse cx="130" cy="320" rx="80" ry="60" fill="#EEEDFE" opacity="0.5"/>
+        <text x="105" y="325" font-size="11" fill="#3C3489" opacity="0.45" font-family="Noto Sans KR, sans-serif">송내</text>
+
+        <!-- 철도 -->
+        <path d="M 80 310 Q 200 260 350 200 Q 480 150 560 180" fill="none" stroke="#C4B8A8" stroke-width="5" stroke-linecap="round" stroke-dasharray="12 8" opacity="0.7"/>
+        <path d="M 350 200 Q 480 170 560 200" fill="none" stroke="#C4B8A8" stroke-width="4" stroke-linecap="round" opacity="0.5"/>
+
+        <!-- 도로 -->
+        <path d="M 240 100 L 400 260 L 600 240" fill="none" stroke="#E8E0D4" stroke-width="14" stroke-linecap="round" opacity="0.8"/>
+        <path d="M 100 280 L 350 300 L 620 260" fill="none" stroke="#E8E0D4" stroke-width="10" stroke-linecap="round" opacity="0.6"/>
+
+        <!-- 나무 -->
+        <g opacity="0.55">
+          <circle cx="720" cy="380" r="14" fill="#9FE1CB"/><rect x="717" y="392" width="6" height="14" rx="2" fill="#A08060"/>
+          <circle cx="750" cy="400" r="11" fill="#9FE1CB"/><rect x="748" y="409" width="5" height="12" rx="2" fill="#A08060"/>
+          <circle cx="680" cy="410" r="10" fill="#9FE1CB"/><rect x="678" y="418" width="5" height="10" rx="2" fill="#A08060"/>
+          <circle cx="300" cy="420" r="12" fill="#9FE1CB"/><rect x="298" y="430" width="5" height="12" rx="2" fill="#A08060"/>
+          <circle cx="460" cy="430" r="13" fill="#9FE1CB"/><rect x="458" y="441" width="6" height="13" rx="2" fill="#A08060"/>
+        </g>
+
+        <!-- 역 -->
+        <g filter="url(#softShadow)">
+          <rect x="62" y="288" width="36" height="28" rx="6" fill="#E6F1FB" stroke="#185FA5" stroke-width="1.5"/>
+          <text x="80" y="306" text-anchor="middle" font-size="14">🚉</text>
+          <text x="80" y="332" text-anchor="middle" font-size="11" font-weight="700" fill="#0C447C" font-family="Noto Sans KR, sans-serif">송내역</text>
+
+          <rect x="332" y="168" width="36" height="28" rx="6" fill="#E6F1FB" stroke="#185FA5" stroke-width="1.5"/>
+          <text x="350" y="186" text-anchor="middle" font-size="14">🚉</text>
+          <text x="350" y="212" text-anchor="middle" font-size="11" font-weight="700" fill="#0C447C" font-family="Noto Sans KR, sans-serif">중동역</text>
+
+          <rect x="462" y="158" width="36" height="28" rx="6" fill="#E6F1FB" stroke="#185FA5" stroke-width="1.5"/>
+          <text x="480" y="176" text-anchor="middle" font-size="14">🚉</text>
+          <text x="480" y="202" text-anchor="middle" font-size="11" font-weight="700" fill="#0C447C" font-family="Noto Sans KR, sans-serif">상동역</text>
+        </g>
+
+        <!-- 주요 거점 -->
+        <g filter="url(#softShadow)">
+          <rect x="318" y="238" width="84" height="36" rx="8" fill="#FAEEDA" stroke="#BA7517" stroke-width="1.5"/>
+          <text x="360" y="260" text-anchor="middle" font-size="11" font-weight="700" fill="#633806" font-family="Noto Sans KR, sans-serif">원미구청</text>
+
+          <rect x="108" y="358" width="104" height="36" rx="8" fill="#FAEEDA" stroke="#BA7517" stroke-width="1.5"/>
+          <text x="160" y="380" text-anchor="middle" font-size="11" font-weight="700" fill="#633806" font-family="Noto Sans KR, sans-serif">복사골문화센터</text>
+
+          <rect x="568" y="198" width="84" height="36" rx="8" fill="#FAEEDA" stroke="#BA7517" stroke-width="1.5"/>
+          <text x="610" y="220" text-anchor="middle" font-size="11" font-weight="700" fill="#633806" font-family="Noto Sans KR, sans-serif">부천여고</text>
+        </g>
+
+        <!-- 작은책방 마커 -->
+        <g class="map-marker" data-store="spoon" onclick="showMapStore('spoon')" role="button" tabindex="0">
+          <circle cx="115" cy="268" r="18" fill="#1D9E75" stroke="white" stroke-width="3" filter="url(#softShadow)"/>
+          <text x="115" y="273" text-anchor="middle" font-size="14">📗</text>
+          <text x="115" y="302" text-anchor="middle" font-size="10" font-weight="700" fill="#085041" font-family="Noto Sans KR, sans-serif">글한스푼</text>
+        </g>
+
+        <g class="map-marker" data-store="happiness" onclick="showMapStore('happiness')" role="button" tabindex="0">
+          <circle cx="165" cy="395" r="18" fill="#1D9E75" stroke="white" stroke-width="3" filter="url(#softShadow)"/>
+          <text x="165" y="400" text-anchor="middle" font-size="14">📗</text>
+          <text x="165" y="424" text-anchor="middle" font-size="10" font-weight="700" fill="#085041" font-family="Noto Sans KR, sans-serif">해피니스</text>
+        </g>
+
+        <g class="map-marker" data-store="moalboal" onclick="showMapStore('moalboal')" role="button" tabindex="0">
+          <circle cx="235" cy="155" r="18" fill="#1D9E75" stroke="white" stroke-width="3" filter="url(#softShadow)"/>
+          <text x="235" y="160" text-anchor="middle" font-size="14">📗</text>
+          <text x="235" y="184" text-anchor="middle" font-size="10" font-weight="700" fill="#085041" font-family="Noto Sans KR, sans-serif">모알보알</text>
+        </g>
+
+        <g class="map-marker featured" data-store="bbooks" onclick="showMapStore('bbooks')" role="button" tabindex="0">
+          <circle cx="355" cy="295" r="20" fill="#1D9E75" stroke="#BA7517" stroke-width="3" filter="url(#softShadow)"/>
+          <text x="355" y="301" text-anchor="middle" font-size="15">📗</text>
+          <text x="355" y="328" text-anchor="middle" font-size="10" font-weight="700" fill="#085041" font-family="Noto Sans KR, sans-serif">비북스</text>
+        </g>
+
+        <g class="map-marker" data-store="heddeul" onclick="showMapStore('heddeul')" role="button" tabindex="0">
+          <circle cx="435" cy="310" r="18" fill="#1D9E75" stroke="white" stroke-width="3" filter="url(#softShadow)"/>
+          <text x="435" y="315" text-anchor="middle" font-size="14">📗</text>
+          <text x="435" y="339" text-anchor="middle" font-size="10" font-weight="700" fill="#085041" font-family="Noto Sans KR, sans-serif">헤엄치는뜰</text>
+        </g>
+
+        <g class="map-marker" data-store="hwamok" onclick="showMapStore('hwamok')" role="button" tabindex="0">
+          <circle cx="515" cy="195" r="18" fill="#1D9E75" stroke="white" stroke-width="3" filter="url(#softShadow)"/>
+          <text x="515" y="200" text-anchor="middle" font-size="14">📗</text>
+          <text x="515" y="224" text-anchor="middle" font-size="10" font-weight="700" fill="#085041" font-family="Noto Sans KR, sans-serif">화목이네</text>
+        </g>
+
+        <g class="map-marker" data-store="bright" onclick="showMapStore('bright')" role="button" tabindex="0">
+          <circle cx="585" cy="255" r="18" fill="#1D9E75" stroke="white" stroke-width="3" filter="url(#softShadow)"/>
+          <text x="585" y="260" text-anchor="middle" font-size="14">📗</text>
+          <text x="585" y="284" text-anchor="middle" font-size="10" font-weight="700" fill="#085041" font-family="Noto Sans KR, sans-serif">빛나는친구들</text>
+        </g>
+
+        <!-- 나침반 -->
+        <g opacity="0.5">
+          <circle cx="730" cy="60" r="22" fill="white" stroke="#E8E0D4" stroke-width="1.5"/>
+          <text x="730" y="56" text-anchor="middle" font-size="9" font-weight="700" fill="#888780" font-family="Noto Sans KR, sans-serif">N</text>
+          <polygon points="730,42 726,52 734,52" fill="#888780"/>
+        </g>
+      </svg>
+    </div>
+
+    <div class="map-popup" id="mapPopup">
+      <div class="map-popup-name" id="mapPopupName"></div>
+      <div class="map-popup-area" id="mapPopupArea"></div>
+      <div class="map-popup-address" id="mapPopupAddress"></div>
+      <div class="map-popup-actions">
+        <a class="map-popup-btn primary" id="mapPopupNaver" href="#" target="_blank" rel="noopener noreferrer">네이버 지도로 길찾기 →</a>
+        <a class="map-popup-btn secondary" id="mapPopupInsta" href="#" target="_blank" rel="noopener noreferrer">인스타그램</a>
+      </div>
+    </div>
+
+    <div class="map-legend">
+      <span class="map-legend-item"><span class="map-legend-dot store"></span> 작은책방</span>
+      <span class="map-legend-item"><span class="map-legend-dot station"></span> 지하철역</span>
+      <span class="map-legend-item"><span class="map-legend-dot landmark"></span> 주요 거점</span>
+    </div>
   </div>
 
   <div class="alert alert-green" style="margin-top: 20px;">
@@ -813,6 +1087,68 @@
 </div>
 
 <script>
+const mapStores = {
+  bbooks: {
+    name: '비북스',
+    area: '원미동',
+    address: '경기 부천시 원미구 부천로136번길 24, B02호 (원미구청 맞은편)',
+    insta: 'https://www.instagram.com/b_books2026/'
+  },
+  moalboal: {
+    name: '모알보알',
+    area: '심곡동',
+    address: '경기 부천시 원미구 부흥로356번길 29, 1층',
+    insta: 'https://www.instagram.com/moalboal.bookshop/'
+  },
+  heddeul: {
+    name: '헤엄치는뜰',
+    area: '원미동',
+    address: '경기 부천시 원미구 원미로144번길 45, 2층 (두산아파트 상가)',
+    insta: 'https://www.instagram.com/he._.ddeul/'
+  },
+  happiness: {
+    name: '해피니스 북스토어',
+    area: '중동',
+    address: '경기 부천시 원미구 장말로 107, 복사골문화센터 1층',
+    insta: 'https://www.instagram.com/happiness_bookstore_cafe/'
+  },
+  hwamok: {
+    name: '화목이네책방',
+    area: '상동',
+    address: '경기 부천시 원미구 상동 564-9 (상동 카페거리)',
+    insta: 'https://www.instagram.com/hwamok_books/'
+  },
+  bright: {
+    name: '빛나는친구들',
+    area: '상동',
+    address: '경기 부천시 원미구 부일로 287-9, 어울채 101호 (부천여고 정문 앞)',
+    insta: 'https://www.instagram.com/brightfriends_official/'
+  },
+  spoon: {
+    name: '글한스푼',
+    area: '송내동',
+    address: '경기 부천시 소사구 경인로1185번길 36',
+    insta: 'https://www.instagram.com/spoonful_of_letters/'
+  }
+};
+
+function showMapStore(id) {
+  const store = mapStores[id];
+  if (!store) return;
+
+  document.querySelectorAll('.map-marker').forEach(m => m.classList.remove('active'));
+  const marker = document.querySelector('.map-marker[data-store="' + id + '"]');
+  if (marker) marker.classList.add('active');
+
+  document.getElementById('mapPopupName').textContent = store.name;
+  document.getElementById('mapPopupArea').textContent = store.area;
+  document.getElementById('mapPopupAddress').textContent = store.address;
+  document.getElementById('mapPopupNaver').href =
+    'https://map.naver.com/v5/search/' + encodeURIComponent(store.address);
+  document.getElementById('mapPopupInsta').href = store.insta;
+  document.getElementById('mapPopup').classList.add('visible');
+}
+
 function toggleFaq(el) {
   const item = el.parentElement;
   item.classList.toggle('open');
