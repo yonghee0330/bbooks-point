@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>부천 작은책방에서 독서포인트 쓰기</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Noto+Serif+KR:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #1D9E75;
+    --green-light: #E1F5EE;
+    --green-dark: #085041;
+    --green-mid: #0F6E56;
+    --amber: #BA7517;
+    --amber-light: #FAEEDA;
+    --amber-dark: #633806;
+    --blue: #185FA5;
+    --blue-light: #E6F1FB;
+    --blue-dark: #0C447C;
+    --coral: #D85A30;
+    --coral-light: #FAECE7;
+    --coral-dark: #712B13;
+    --purple: #534AB7;
+    --purple-light: #EEEDFE;
+    --purple-dark: #3C3489;
+    --gray-bg: #F7F5F0;
+    --gray-light: #F1EFE8;
+    --gray-mid: #888780;
+    --gray-dark: #2C2C2A;
+    --text: #1a1a18;
+    --text-muted: #5F5E5A;
+    --white: #ffffff;
+    --border: rgba(0,0,0,0.1);
+    --radius: 12px;
+    --radius-sm: 8px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background: var(--gray-bg);
+    color: var(--text);
+    line-height: 1.7;
+    font-size: 15px;
+  }
+
+  /* Header */
+  .site-header {
+    background: var(--green-dark);
+    color: white;
+    padding: 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 3px solid var(--green);
+  }
+  .header-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .header-badge {
+    background: var(--green);
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.5px;
+  }
+  .header-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: white;
+  }
+  .header-link {
+    margin-left: auto;
+    font-size: 12px;
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255,255,255,0.3);
+    padding-bottom: 1px;
+  }
+  .header-link:hover { color: white; }
+
+  /* Hero */
+  .hero {
+    background: linear-gradient(135deg, var(--green-dark) 0%, var(--green-mid) 60%, var(--green) 100%);
+    color: white;
+    padding: 56px 24px 48px;
+    text-align: center;
+  }
+  .hero-eyebrow {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: rgba(255,255,255,0.6);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .hero h1 {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 16px;
+  }
+  .hero h1 em {
+    font-style: normal;
+    color: #9FE1CB;
+  }
+  .hero-subtitle {
+    font-size: 15px;
+    color: rgba(255,255,255,0.75);
+    max-width: 520px;
+    margin: 0 auto 32px;
+    line-height: 1.8;
+  }
+  .hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .hero-stat {
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 40px;
+    padding: 8px 20px;
+    font-size: 13px;
+    font-weight: 500;
+  }
+  .hero-stat strong {
+    color: #9FE1CB;
+    font-weight: 700;
+  }
+
+  /* Main layout */
+  .container {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+  }
+
+  /* Section titles */
+  .section-title {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--green-dark);
+    margin: 48px 0 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-title::before {
+    content: '';
+    display: block;
+    width: 4px;
+    height: 22px;
+    background: var(--green);
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+
+  /* Summary banner */
+  .summary-banner {
+    background: white;
+    border: 1.5px solid var(--green);
+    border-radius: var(--radius);
+    padding: 24px 28px;
+    margin: 32px 0 0;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 24px;
+    align-items: center;
+  }
+  .summary-banner-label {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--green-mid);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .summary-banner-text {
+    font-size: 15px;
+    color: var(--text-muted);
+    line-height: 1.8;
+  }
+  .summary-banner-text strong { color: var(--text); }
+  .max-point-box {
+    background: var(--green-light);
+    border-radius: var(--radius-sm);
+    padding: 16px 24px;
+    text-align: center;
+    flex-shrink: 0;
+  }
+  .max-point-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--green-mid);
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+  }
+  .max-point-value {
+    font-size: 28px;
+    font-weight: 900;
+    color: var(--green-dark);
+    line-height: 1;
+  }
+  .max-point-unit {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--green-mid);
+    margin-top: 2px;
+  }
+  .max-point-boxes {
+    display: flex;
+    gap: 12px;
+    flex-shrink: 0;
+  }
+  .max-point-box.annual {
+    background: var(--amber-light);
+  }
+  .max-point-box.annual .max-point-label { color: var(--amber-dark); }
+  .max-point-box.annual .max-point-value { color: var(--amber-dark); }
+  .max-point-box.annual .max-point-unit { color: var(--amber); }
+
+  /* Point cards grid */
+  .points-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 14px;
+    margin-top: 4px;
+  }
+  .point-card {
+    background: white;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+  .point-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  }
+  .point-card-accent {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+  }
+  .acc-green { background: var(--green); }
+  .acc-blue { background: var(--blue); }
+  .acc-amber { background: var(--amber); }
+  .acc-coral { background: var(--coral); }
+  .acc-purple { background: var(--purple); }
+
+  .point-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 14px;
+  }
+  .point-card-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+  }
+  .ic-green { background: var(--green-light); }
+  .ic-blue { background: var(--blue-light); }
+  .ic-amber { background: var(--amber-light); }
+  .ic-coral { background: var(--coral-light); }
+  .ic-purple { background: var(--purple-light); }
+
+  .point-badge {
+    font-size: 13px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 20px;
+  }
+  .pb-green { background: var(--green-light); color: var(--green-dark); }
+  .pb-blue { background: var(--blue-light); color: var(--blue-dark); }
+  .pb-amber { background: var(--amber-light); color: var(--amber-dark); }
+  .pb-coral { background: var(--coral-light); color: var(--coral-dark); }
+  .pb-purple { background: var(--purple-light); color: var(--purple-dark); }
+
+  .point-card-name {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+  .point-card-limit {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+  }
+  .point-card-method {
+    font-size: 12px;
+    color: var(--text-muted);
+    background: var(--gray-light);
+    border-radius: 6px;
+    padding: 8px 10px;
+    line-height: 1.6;
+  }
+  .point-card-max {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+  }
+  .point-card-max-label { color: var(--text-muted); }
+  .point-card-max-value { font-weight: 700; color: var(--text); }
+
+  /* Bookstore grid */
+  .bookstore-intro {
+    font-size: 15px;
+    color: var(--text-muted);
+    line-height: 1.8;
+    margin-bottom: 20px;
+  }
+  .bookstore-intro strong { color: var(--text); }
+  .bookstore-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 14px;
+    margin-top: 4px;
+  }
+  .bookstore-card {
+    display: block;
+    background: white;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    padding: 20px;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.15s, box-shadow 0.15s;
+    cursor: pointer;
+  }
+  .bookstore-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  }
+  .bookstore-card.featured {
+    border: 1.5px solid var(--green);
+    background: linear-gradient(180deg, var(--green-light) 0%, white 40%);
+  }
+  .bookstore-area {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--green-mid);
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+  }
+  .bookstore-name {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+  .bookstore-desc {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.65;
+    margin-bottom: 10px;
+  }
+  .bookstore-link-label {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--green-mid);
+  }
+  .bookstore-badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    background: var(--green);
+    color: white;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+  }
+
+  /* How to use */
+  .how-steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-top: 4px;
+  }
+  .how-step {
+    background: white;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    padding: 24px 20px;
+    text-align: center;
+  }
+  .how-step-num {
+    width: 32px;
+    height: 32px;
+    background: var(--green-light);
+    color: var(--green-dark);
+    font-size: 14px;
+    font-weight: 900;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 12px;
+  }
+  .how-step-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+  .how-step-desc {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.65;
+  }
+
+  /* Alert boxes */
+  .alert {
+    border-radius: var(--radius-sm);
+    padding: 14px 18px;
+    margin-top: 20px;
+    font-size: 13px;
+    line-height: 1.75;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .alert-icon { flex-shrink: 0; font-size: 18px; margin-top: 1px; }
+  .alert-green { background: var(--green-light); color: var(--green-dark); }
+  .alert-amber { background: var(--amber-light); color: var(--amber-dark); }
+  .alert-blue { background: var(--blue-light); color: var(--blue-dark); }
+
+  /* FAQ */
+  .faq-list { margin-top: 4px; }
+  .faq-item {
+    background: white;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+    margin-bottom: 10px;
+    overflow: hidden;
+  }
+  .faq-q {
+    padding: 16px 20px;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    user-select: none;
+  }
+  .faq-q::after {
+    content: '+';
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--gray-mid);
+    flex-shrink: 0;
+    transition: transform 0.2s;
+  }
+  .faq-item.open .faq-q::after {
+    transform: rotate(45deg);
+  }
+  .faq-a {
+    display: none;
+    padding: 0 20px 16px;
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.8;
+    border-top: 1px solid var(--gray-light);
+    margin-top: -1px;
+  }
+  .faq-item.open .faq-a { display: block; }
+  .faq-a strong { color: var(--text); }
+
+  /* CTA footer */
+  .cta-section {
+    background: var(--green-dark);
+    border-radius: var(--radius);
+    padding: 32px 28px;
+    margin-top: 48px;
+    text-align: center;
+    color: white;
+  }
+  .cta-section h3 {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  .cta-section p {
+    font-size: 14px;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 20px;
+  }
+  .cta-btn {
+    display: inline-block;
+    background: var(--green);
+    color: white;
+    text-decoration: none;
+    padding: 12px 28px;
+    border-radius: 40px;
+    font-size: 14px;
+    font-weight: 700;
+    transition: background 0.15s;
+  }
+  .cta-btn:hover { background: #1D9E75cc; }
+
+  @media (max-width: 600px) {
+    .hero h1 { font-size: 24px; }
+    .summary-banner { grid-template-columns: 1fr; }
+    .points-grid { grid-template-columns: 1fr; }
+    .bookstore-grid { grid-template-columns: 1fr; }
+    .how-steps { grid-template-columns: 1fr; }
+    .max-point-boxes { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <span class="header-badge">부천 작은책방</span>
+    <span class="header-title">독서포인트, 부천 작은책방에서 쓰기</span>
+    <a href="https://www.library.kr/bookpoint/main/homemain" target="_blank" class="header-link">공식 사이트 →</a>
+  </div>
+</header>
+
+<section class="hero">
+  <p class="hero-eyebrow">2026 기준 최신 업데이트</p>
+  <h1>독서포인트 모아서<br><em>부천 작은책방</em>에서 쓰자</h1>
+  <p class="hero-subtitle">천권으로 독서포인트를 부천페이로 전환하면, 비북스를 비롯한 부천의 작은책방에서 책을 살 수 있어요. 우리 동네 책방을 응원하는 가장 좋은 방법이에요.</p>
+  <div class="hero-stats">
+    <div class="hero-stat">1P = <strong>1원</strong> (부천페이 전환)</div>
+    <div class="hero-stat">연간 최대 <strong>60,000P</strong> (6만원)</div>
+    <div class="hero-stat">부천 작은책방 <strong>7곳</strong> 이용 가능</div>
+  </div>
+</section>
+
+<div class="container">
+
+  <!-- 부천 작은책방 -->
+  <h2 class="section-title" style="margin-top: 32px;">부천에서 독서포인트 쓸 수 있는 작은책방</h2>
+
+  <p class="bookstore-intro">
+    천권으로 독서포인트를 <strong>부천페이</strong>로 전환하면, 아래 부천의 작은책방에서 책을 구매할 수 있어요.
+    대형 서점이 아닌 <strong>우리 동네 책방</strong>에 포인트를 쓰면, 독서 문화가 더 풍성해져요.
+  </p>
+
+  <div class="bookstore-grid">
+    <a href="https://www.instagram.com/b_books2026/" target="_blank" rel="noopener noreferrer" class="bookstore-card featured">
+      <span class="bookstore-badge">비북스</span>
+      <div class="bookstore-area">원미동</div>
+      <div class="bookstore-name">비북스</div>
+      <p class="bookstore-desc">부천의 독립서점. 독서행사와 북클럽이 활발하고, 독서포인트로 채한 책을 만나볼 수 있어요.</p>
+      <span class="bookstore-link-label">인스타그램 →</span>
+    </a>
+    <a href="https://www.instagram.com/moalboal.bookshop/" target="_blank" rel="noopener noreferrer" class="bookstore-card">
+      <div class="bookstore-area">심곡동</div>
+      <div class="bookstore-name">모알보알</div>
+      <p class="bookstore-desc">심곡동의 작은책방. 동네에서 책과 만나는 따뜻한 공간이에요.</p>
+      <span class="bookstore-link-label">인스타그램 →</span>
+    </a>
+    <a href="https://www.instagram.com/he._.ddeul/" target="_blank" rel="noopener noreferrer" class="bookstore-card">
+      <div class="bookstore-area">원미동</div>
+      <div class="bookstore-name">헤엄치는뜰</div>
+      <p class="bookstore-desc">원미동의 독립서점. 책과 함께하는 여유로운 시간을 보낼 수 있어요.</p>
+      <span class="bookstore-link-label">인스타그램 →</span>
+    </a>
+    <a href="https://www.instagram.com/happiness_bookstore_cafe/" target="_blank" rel="noopener noreferrer" class="bookstore-card">
+      <div class="bookstore-area">중동</div>
+      <div class="bookstore-name">해피니스 북스토어</div>
+      <p class="bookstore-desc">중동의 작은책방. 행복한 독서 경험을 나누는 공간이에요.</p>
+      <span class="bookstore-link-label">인스타그램 →</span>
+    </a>
+    <a href="https://www.instagram.com/hwamok_books/" target="_blank" rel="noopener noreferrer" class="bookstore-card">
+      <div class="bookstore-area">상동</div>
+      <div class="bookstore-name">화목이네책방</div>
+      <p class="bookstore-desc">상동의 작은책방. 이웃과 책으로 연결되는 아늑한 서점이에요.</p>
+      <span class="bookstore-link-label">인스타그램 →</span>
+    </a>
+    <a href="https://www.instagram.com/brightfriends_official/" target="_blank" rel="noopener noreferrer" class="bookstore-card">
+      <div class="bookstore-area">상동</div>
+      <div class="bookstore-name">빛나는친구들</div>
+      <p class="bookstore-desc">상동의 작은책방. 아이와 어른 모두를 위한 책이 가득한 곳이에요.</p>
+      <span class="bookstore-link-label">인스타그램 →</span>
+    </a>
+    <a href="https://www.instagram.com/spoonful_of_letters/" target="_blank" rel="noopener noreferrer" class="bookstore-card">
+      <div class="bookstore-area">송내동</div>
+      <div class="bookstore-name">글한스푼</div>
+      <p class="bookstore-desc">송내동의 작은책방. 글과 책을 사랑하는 이들의 공간이에요.</p>
+      <span class="bookstore-link-label">인스타그램 →</span>
+    </a>
+  </div>
+
+  <div class="alert alert-green" style="margin-top: 20px;">
+    <span class="alert-icon">📗</span>
+    <span>위 서점은 <strong>부천페이(지역화폐) 가맹점</strong>으로 등록된 작은책방이에요. 포인트를 전환한 뒤 매장에서 결제하면 됩니다. 카드를 클릭하면 각 서점 인스타그램으로 이동해요. 방문 전 영업시간은 인스타그램에서 확인해 주세요.</span>
+  </div>
+
+  <!-- 사용 방법 -->
+  <h2 class="section-title">독서포인트 → 부천 작은책방, 이렇게 써요</h2>
+
+  <div class="how-steps">
+    <div class="how-step">
+      <div class="how-step-num">1</div>
+      <div class="how-step-title">포인트 모으기</div>
+      <p class="how-step-desc">천권으로에서 독서활동으로 포인트를 적립해요. 도서구매·대출·일지·리뷰 등 다양한 활동이 해당돼요.</p>
+    </div>
+    <div class="how-step">
+      <div class="how-step-num">2</div>
+      <div class="how-step-title">부천페이로 전환</div>
+      <p class="how-step-desc">적립 포인트를 <strong>부천페이</strong>로 전환해요. 부천시민이라면 부천페이(캐릭터)로 바꿀 수 있어요. 최소 3,000P 이상부터 가능해요.</p>
+    </div>
+    <div class="how-step">
+      <div class="how-step-num">3</div>
+      <div class="how-step-title">작은책방에서 사용</div>
+      <p class="how-step-desc">전환된 부천페이로 <strong>비북스, 모알보알, 헤엄치는뜰</strong> 등 부천 작은책방에서 원하는 책을 구매하세요!</p>
+    </div>
+  </div>
+
+  <!-- 한 달 최대치 요약 -->
+  <div class="summary-banner" style="margin-top: 48px;">
+    <div>
+      <div class="summary-banner-label">포인트 적립 한도</div>
+      <p class="summary-banner-text">
+        2026년 기준 <strong>1인당 연간 최대 60,000P(6만원)</strong>까지 적립할 수 있어요.
+        모은 포인트를 부천페이로 전환하면 위 작은책방에서 바로 쓸 수 있답니다.
+      </p>
+      <div class="alert alert-amber" style="margin-top: 14px;">
+        <span class="alert-icon">⚠️</span>
+        <span>포인트 전환은 <strong>월 1회, 최소 3,000P 이상</strong>일 때 가능해요. 전환 신청은 다음 달 초에 자동 처리됩니다.</span>
+      </div>
+    </div>
+    <div class="max-point-boxes">
+      <div class="max-point-box annual">
+        <div class="max-point-label">연간 최대</div>
+        <div class="max-point-value">60,000</div>
+        <div class="max-point-unit">포인트 (6만원)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 활동별 포인트 기준 -->
+  <h2 class="section-title">활동별 포인트 적립 기준</h2>
+
+  <div class="points-grid">
+    <!-- 도서구매 -->
+    <div class="point-card">
+      <div class="point-card-accent acc-green"></div>
+      <div class="point-card-header">
+        <div class="point-card-icon ic-green">📗</div>
+        <span class="point-badge pb-green">2,000P / 권</span>
+      </div>
+      <div class="point-card-name">도서구매 인증</div>
+      <div class="point-card-limit">월 최대 2권 → 최대 4,000P</div>
+      <div class="point-card-method">구매 영수증 사진을 앱에 업로드<br>비북스 등 부천 작은책방 구매도 인정<br>종이책·전자책 모두 인정 (구독형 제외)</div>
+      <div class="point-card-max">
+        <span class="point-card-max-label">월 최대 적립</span>
+        <span class="point-card-max-value" style="color: var(--green-dark);">4,000P</span>
+      </div>
+    </div>
+
+    <!-- 도서대출 -->
+    <div class="point-card">
+      <div class="point-card-accent acc-blue"></div>
+      <div class="point-card-header">
+        <div class="point-card-icon ic-blue">📚</div>
+        <span class="point-badge pb-blue">1,000P / 회</span>
+      </div>
+      <div class="point-card-name">도서대출 인증</div>
+      <div class="point-card-limit">월 최대 4권 → 최대 4,000P</div>
+      <div class="point-card-method">도서관 대출증빙 사진 업로드<br>경기도내 도서관만 인정<br>전자책은 월 2권까지 가능</div>
+      <div class="point-card-max">
+        <span class="point-card-max-label">월 최대 적립</span>
+        <span class="point-card-max-value" style="color: var(--blue-dark);">4,000P</span>
+      </div>
+    </div>
+
+    <!-- 독서기록일지 -->
+    <div class="point-card">
+      <div class="point-card-accent acc-amber"></div>
+      <div class="point-card-header">
+        <div class="point-card-icon ic-amber">📝</div>
+        <span class="point-badge pb-amber">100P / 회</span>
+      </div>
+      <div class="point-card-name">독서기록일지 작성</div>
+      <div class="point-card-limit">하루 최대 5회 / 월 최대 31회 → 최대 3,100P</div>
+      <div class="point-card-method">200자 이내 독서 기록 입력<br>하루에 최대 5번까지 작성 가능<br>매일 꾸준히 쌓는 게 핵심!</div>
+      <div class="point-card-max">
+        <span class="point-card-max-label">월 최대 적립</span>
+        <span class="point-card-max-value" style="color: var(--amber-dark);">3,100P</span>
+      </div>
+    </div>
+
+    <!-- 도서리뷰 -->
+    <div class="point-card">
+      <div class="point-card-accent acc-coral"></div>
+      <div class="point-card-header">
+        <div class="point-card-icon ic-coral">⭐</div>
+        <span class="point-badge pb-coral">500P / 권</span>
+      </div>
+      <div class="point-card-name">도서리뷰 작성</div>
+      <div class="point-card-limit">월 최대 6권 → 최대 3,000P</div>
+      <div class="point-card-method">200자~1,000자 이내 리뷰 작성<br>책 한 권당 한 번만 인정<br>성의 있는 리뷰로 승인률 높이기</div>
+      <div class="point-card-max">
+        <span class="point-card-max-label">월 최대 적립</span>
+        <span class="point-card-max-value" style="color: var(--coral-dark);">3,000P</span>
+      </div>
+    </div>
+
+    <!-- 독서행사 -->
+    <div class="point-card">
+      <div class="point-card-accent acc-purple"></div>
+      <div class="point-card-header">
+        <div class="point-card-icon ic-purple">🎪</div>
+        <span class="point-badge pb-purple">1,000P / 회</span>
+      </div>
+      <div class="point-card-name">도/시군 독서행사</div>
+      <div class="point-card-limit">월 최대 4회 → 최대 4,000P</div>
+      <div class="point-card-method">행사장에서 QR코드 인증<br>도서관, 지자체 주최 행사 모두 해당<br>비북스 등 부천 작은책방 행사도 체크!</div>
+      <div class="point-card-max">
+        <span class="point-card-max-label">월 최대 적립</span>
+        <span class="point-card-max-value" style="color: var(--purple-dark);">4,000P</span>
+      </div>
+    </div>
+
+    <!-- 교육수료 -->
+    <div class="point-card">
+      <div class="point-card-accent acc-green"></div>
+      <div class="point-card-header">
+        <div class="point-card-icon ic-green">🎓</div>
+        <span class="point-badge pb-green">500P / 회</span>
+      </div>
+      <div class="point-card-name">독서 교육수료</div>
+      <div class="point-card-limit">월 최대 4회 → 최대 2,000P</div>
+      <div class="point-card-method">경기도gseek 지정과정 수료<br>수료증 업로드로 인증<br>온라인 강의도 해당되는지 확인 필요</div>
+      <div class="point-card-max">
+        <span class="point-card-max-label">월 최대 적립</span>
+        <span class="point-card-max-value" style="color: var(--green-dark);">2,000P</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="alert alert-blue">
+    <span class="alert-icon">ℹ️</span>
+    <span><strong>추가 포인트도 있어요:</strong> 추천인 가입 시 500P (연간 최대 5명 = 2,500P), 21일 챌린지 참여 50P, 챌린지 완주 시 축하금 500P. 연간으로 보면 추천인 포인트도 쏠쏠해요!</span>
+  </div>
+
+  <!-- FAQ -->
+  <h2 class="section-title">자주 묻는 질문</h2>
+
+  <div class="faq-list">
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">부천 작은책방에서 독서포인트를 바로 쓸 수 있나요?</div>
+      <div class="faq-a">독서포인트를 먼저 <strong>부천페이(지역화폐)</strong>로 전환한 뒤, 부천페이 가맹점인 작은책방에서 결제하면 돼요. 비북스, 모알보알, 헤엄치는뜰, 해피니스 북스토어, 화목이네책방, 빛나는친구들, 글한스푼 등이 해당돼요.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">부천페이로 어떻게 전환하나요?</div>
+      <div class="faq-a">천권으로 독서포인트 사이트에서 전환 신청을 하면 돼요. <strong>최소 3,000P 이상</strong>일 때 신청 가능하고, 부천시민이라면 부천페이(캐릭터)로 전환할 수 있어요. 매월 전환 신청 마감일을 확인하고 놓치지 마세요.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">작은책방에서 구매한 책도 포인트 적립이 되나요?</div>
+      <div class="faq-a">네! 비북스 등 작은책방에서 산 책도 <strong>도서구매 인증</strong>으로 포인트를 적립할 수 있어요. 구매 영수증을 천권으로에 업로드하면 권당 2,000P(월 최대 2권)가 쌓여요. 모은 포인트를 다시 작은책방에서 쓰는 선순환이에요!</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">연간 최대 얼마까지 모을 수 있나요?</div>
+      <div class="faq-a">2026년 기준 <strong>1인당 연간 최대 60,000P(6만원)</strong>까지 적립할 수 있어요. 1P = 1원이므로, 연간 최대 6만 원어치의 책을 부천 작은책방에서 살 수 있는 셈이에요.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">포인트 유효기간이 있나요?</div>
+      <div class="faq-a">적립된 포인트는 <strong>2026년 12월 20일까지</strong> 사용하지 않으면 소멸될 수 있어요. 모은 포인트는 주기적으로 부천페이로 전환해서 비북스 등 작은책방에서 쓰는 게 좋아요.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">21일 챌린지가 뭔가요?</div>
+      <div class="faq-a">매월 21일 연속으로 독서활동(주로 독서일지)을 기록하는 챌린지예요. 참여하면 <strong>50P</strong>, 21일을 모두 달성하면 <strong>추가 500P 축하금</strong>을 받아요. 모은 포인트는 부천 작은책방에서 쓸 수 있어요.</div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-section">
+    <h3>부천 작은책방에서 책 만나러 가볼까요?</h3>
+    <p>독서포인트를 모아 부천페이로 전환하고, 비북스를 비롯한 우리 동네 작은책방을 응원해 보세요.</p>
+    <a href="https://www.library.kr/bookpoint/main/homemain" target="_blank" class="cta-btn">천권으로 독서포인트 바로가기 →</a>
+  </div>
+
+  <p style="text-align: center; font-size: 12px; color: var(--text-muted); margin-top: 24px;">
+    이 가이드는 2026년 기준으로 작성되었어요. 정확한 기준은 공식 사이트에서 확인하세요.<br>
+    비북스 · 부천 작은책방 연대 · Made with 📗
+  </p>
+
+</div>
+
+<script>
+function toggleFaq(el) {
+  const item = el.parentElement;
+  item.classList.toggle('open');
+}
+</script>
+</body>
+</html>
