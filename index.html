@@ -735,7 +735,7 @@
   <!-- 부천 작은책방 약도 -->
   <div class="map-wrap">
     <div class="map-wrap-title">부천 작은책방 약도</div>
-    <p class="map-wrap-desc">역과 주요 거점을 기준으로, 작은책방들의 대략적인 위치예요. 마커를 누르면 주소와 길찾기를 확인할 수 있어요.</p>
+    <p class="map-wrap-desc">1호선(부천→중동→송내)과 7호선(상동) 위치를 참고했어요. 비북스를 중심으로 작은책방을 배치했습니다. 마커를 누르면 주소와 길찾기를 확인할 수 있어요.</p>
 
     <div class="map-canvas">
       <svg viewBox="0 0 800 480" xmlns="http://www.w3.org/2000/svg" aria-label="부천 작은책방 약도">
@@ -759,107 +759,110 @@
         <ellipse cx="690" cy="65" rx="35" ry="15" fill="white" opacity="0.75"/>
 
         <!-- 경인천(서쪽) -->
-        <path d="M 0 340 Q 60 330 100 350 Q 140 370 180 360 L 180 480 L 0 480 Z" fill="#C8E6F5" opacity="0.55"/>
-        <text x="55" y="420" font-size="11" fill="#185FA5" opacity="0.6" font-family="Noto Sans KR, sans-serif">경인천</text>
+        <path d="M 0 300 Q 40 290 70 310 L 70 480 L 0 480 Z" fill="#C8E6F5" opacity="0.55"/>
+        <text x="35" y="370" font-size="11" fill="#185FA5" opacity="0.6" font-family="Noto Sans KR, sans-serif">경인천</text>
 
-        <!-- 동네 영역 (일러스트 블록) -->
-        <ellipse cx="200" cy="170" rx="95" ry="70" fill="#FAEEDA" opacity="0.55"/>
-        <text x="168" y="175" font-size="11" fill="#633806" opacity="0.45" font-family="Noto Sans KR, sans-serif">심곡·중동</text>
+        <!-- 동네 영역 -->
+        <ellipse cx="400" cy="255" rx="105" ry="75" fill="#E1F5EE" opacity="0.65"/>
+        <text x="378" y="260" font-size="11" fill="#085041" opacity="0.45" font-family="Noto Sans KR, sans-serif">원미동</text>
 
-        <ellipse cx="400" cy="280" rx="120" ry="85" fill="#E1F5EE" opacity="0.6"/>
-        <text x="365" y="285" font-size="11" fill="#085041" opacity="0.45" font-family="Noto Sans KR, sans-serif">원미동</text>
+        <ellipse cx="280" cy="210" rx="80" ry="58" fill="#FAEEDA" opacity="0.5"/>
+        <text x="252" y="215" font-size="11" fill="#633806" opacity="0.45" font-family="Noto Sans KR, sans-serif">심곡·중동</text>
 
-        <ellipse cx="560" cy="220" rx="100" ry="75" fill="#FAECE7" opacity="0.55"/>
-        <text x="535" y="225" font-size="11" fill="#712B13" opacity="0.45" font-family="Noto Sans KR, sans-serif">상동</text>
+        <ellipse cx="380" cy="115" rx="90" ry="55" fill="#FAECE7" opacity="0.55"/>
+        <text x="358" y="120" font-size="11" fill="#712B13" opacity="0.45" font-family="Noto Sans KR, sans-serif">상동</text>
 
-        <ellipse cx="130" cy="320" rx="80" ry="60" fill="#EEEDFE" opacity="0.5"/>
-        <text x="105" y="325" font-size="11" fill="#3C3489" opacity="0.45" font-family="Noto Sans KR, sans-serif">송내</text>
+        <ellipse cx="130" cy="295" rx="75" ry="55" fill="#EEEDFE" opacity="0.5"/>
+        <text x="108" y="300" font-size="11" fill="#3C3489" opacity="0.45" font-family="Noto Sans KR, sans-serif">송내</text>
 
-        <!-- 철도 -->
-        <path d="M 80 310 Q 200 260 350 200 Q 480 150 560 180" fill="none" stroke="#C4B8A8" stroke-width="5" stroke-linecap="round" stroke-dasharray="12 8" opacity="0.7"/>
-        <path d="M 350 200 Q 480 170 560 200" fill="none" stroke="#C4B8A8" stroke-width="4" stroke-linecap="round" opacity="0.5"/>
+        <!-- 1호선 (부천→중동→송내, 동쪽=서울) -->
+        <path d="M 540 298 Q 400 285 260 288 Q 160 284 80 280" fill="none" stroke="#C4B8A8" stroke-width="5" stroke-linecap="round" stroke-dasharray="12 8" opacity="0.75"/>
+        <text x="620" y="305" font-size="10" fill="#888780" font-family="Noto Sans KR, sans-serif">서울 →</text>
+        <text x="28" y="275" font-size="10" fill="#888780" font-family="Noto Sans KR, sans-serif">→ 인천</text>
 
-        <!-- 도로 -->
-        <path d="M 240 100 L 400 260 L 600 240" fill="none" stroke="#E8E0D4" stroke-width="14" stroke-linecap="round" opacity="0.8"/>
-        <path d="M 100 280 L 350 300 L 620 260" fill="none" stroke="#E8E0D4" stroke-width="10" stroke-linecap="round" opacity="0.6"/>
+        <!-- 7호선 (중동 북쪽→상동) -->
+        <path d="M 270 278 Q 310 190 350 108" fill="none" stroke="#C4B8A8" stroke-width="4" stroke-linecap="round" opacity="0.55"/>
 
         <!-- 나무 -->
         <g opacity="0.55">
           <circle cx="720" cy="380" r="14" fill="#9FE1CB"/><rect x="717" y="392" width="6" height="14" rx="2" fill="#A08060"/>
-          <circle cx="750" cy="400" r="11" fill="#9FE1CB"/><rect x="748" y="409" width="5" height="12" rx="2" fill="#A08060"/>
-          <circle cx="680" cy="410" r="10" fill="#9FE1CB"/><rect x="678" y="418" width="5" height="10" rx="2" fill="#A08060"/>
-          <circle cx="300" cy="420" r="12" fill="#9FE1CB"/><rect x="298" y="430" width="5" height="12" rx="2" fill="#A08060"/>
-          <circle cx="460" cy="430" r="13" fill="#9FE1CB"/><rect x="458" y="441" width="6" height="13" rx="2" fill="#A08060"/>
+          <circle cx="680" cy="400" r="11" fill="#9FE1CB"/><rect x="678" y="409" width="5" height="12" rx="2" fill="#A08060"/>
+          <circle cx="580" cy="420" r="12" fill="#9FE1CB"/><rect x="578" y="430" width="5" height="12" rx="2" fill="#A08060"/>
+          <circle cx="620" cy="350" r="10" fill="#9FE1CB"/><rect x="618" y="358" width="5" height="10" rx="2" fill="#A08060"/>
         </g>
 
-        <!-- 역 -->
+        <!-- 역 (1호선: 부천→중동→송내 / 7호선: 상동) -->
         <g filter="url(#softShadow)">
-          <rect x="62" y="288" width="36" height="28" rx="6" fill="#E6F1FB" stroke="#185FA5" stroke-width="1.5"/>
-          <text x="80" y="306" text-anchor="middle" font-size="14">🚉</text>
-          <text x="80" y="332" text-anchor="middle" font-size="11" font-weight="700" fill="#0C447C" font-family="Noto Sans KR, sans-serif">송내역</text>
+          <rect x="512" y="283" width="36" height="28" rx="6" fill="#E6F1FB" stroke="#185FA5" stroke-width="1.5"/>
+          <text x="530" y="301" text-anchor="middle" font-size="14">🚉</text>
+          <text x="530" y="327" text-anchor="middle" font-size="11" font-weight="700" fill="#0C447C" font-family="Noto Sans KR, sans-serif">부천역</text>
 
-          <rect x="332" y="168" width="36" height="28" rx="6" fill="#E6F1FB" stroke="#185FA5" stroke-width="1.5"/>
-          <text x="350" y="186" text-anchor="middle" font-size="14">🚉</text>
-          <text x="350" y="212" text-anchor="middle" font-size="11" font-weight="700" fill="#0C447C" font-family="Noto Sans KR, sans-serif">중동역</text>
+          <rect x="242" y="273" width="36" height="28" rx="6" fill="#E6F1FB" stroke="#185FA5" stroke-width="1.5"/>
+          <text x="260" y="291" text-anchor="middle" font-size="14">🚉</text>
+          <text x="260" y="317" text-anchor="middle" font-size="11" font-weight="700" fill="#0C447C" font-family="Noto Sans KR, sans-serif">중동역</text>
 
-          <rect x="462" y="158" width="36" height="28" rx="6" fill="#E6F1FB" stroke="#185FA5" stroke-width="1.5"/>
-          <text x="480" y="176" text-anchor="middle" font-size="14">🚉</text>
-          <text x="480" y="202" text-anchor="middle" font-size="11" font-weight="700" fill="#0C447C" font-family="Noto Sans KR, sans-serif">상동역</text>
+          <rect x="62" y="265" width="36" height="28" rx="6" fill="#E6F1FB" stroke="#185FA5" stroke-width="1.5"/>
+          <text x="80" y="283" text-anchor="middle" font-size="14">🚉</text>
+          <text x="80" y="309" text-anchor="middle" font-size="11" font-weight="700" fill="#0C447C" font-family="Noto Sans KR, sans-serif">송내역</text>
+
+          <rect x="332" y="93" width="36" height="28" rx="6" fill="#E6F1FB" stroke="#185FA5" stroke-width="1.5"/>
+          <text x="350" y="111" text-anchor="middle" font-size="14">🚉</text>
+          <text x="350" y="137" text-anchor="middle" font-size="11" font-weight="700" fill="#0C447C" font-family="Noto Sans KR, sans-serif">상동역</text>
         </g>
 
         <!-- 주요 거점 -->
         <g filter="url(#softShadow)">
-          <rect x="318" y="238" width="84" height="36" rx="8" fill="#FAEEDA" stroke="#BA7517" stroke-width="1.5"/>
-          <text x="360" y="260" text-anchor="middle" font-size="11" font-weight="700" fill="#633806" font-family="Noto Sans KR, sans-serif">원미구청</text>
+          <rect x="358" y="208" width="84" height="32" rx="8" fill="#FAEEDA" stroke="#BA7517" stroke-width="1.5"/>
+          <text x="400" y="228" text-anchor="middle" font-size="11" font-weight="700" fill="#633806" font-family="Noto Sans KR, sans-serif">원미구청</text>
 
-          <rect x="108" y="358" width="104" height="36" rx="8" fill="#FAEEDA" stroke="#BA7517" stroke-width="1.5"/>
-          <text x="160" y="380" text-anchor="middle" font-size="11" font-weight="700" fill="#633806" font-family="Noto Sans KR, sans-serif">복사골문화센터</text>
+          <rect x="138" y="318" width="104" height="32" rx="8" fill="#FAEEDA" stroke="#BA7517" stroke-width="1.5"/>
+          <text x="190" y="338" text-anchor="middle" font-size="11" font-weight="700" fill="#633806" font-family="Noto Sans KR, sans-serif">복사골문화센터</text>
 
-          <rect x="568" y="198" width="84" height="36" rx="8" fill="#FAEEDA" stroke="#BA7517" stroke-width="1.5"/>
-          <text x="610" y="220" text-anchor="middle" font-size="11" font-weight="700" fill="#633806" font-family="Noto Sans KR, sans-serif">부천여고</text>
+          <rect x="328" y="138" width="84" height="32" rx="8" fill="#FAEEDA" stroke="#BA7517" stroke-width="1.5"/>
+          <text x="370" y="158" text-anchor="middle" font-size="11" font-weight="700" fill="#633806" font-family="Noto Sans KR, sans-serif">부천여고</text>
         </g>
 
-        <!-- 작은책방 마커 -->
-        <g class="map-marker" data-store="spoon" onclick="showMapStore('spoon')" role="button" tabindex="0">
-          <circle cx="115" cy="268" r="18" fill="#1D9E75" stroke="white" stroke-width="3" filter="url(#softShadow)"/>
-          <text x="115" y="273" text-anchor="middle" font-size="14">📗</text>
-          <text x="115" y="302" text-anchor="middle" font-size="10" font-weight="700" fill="#085041" font-family="Noto Sans KR, sans-serif">글한스푼</text>
-        </g>
-
-        <g class="map-marker" data-store="happiness" onclick="showMapStore('happiness')" role="button" tabindex="0">
-          <circle cx="165" cy="395" r="18" fill="#1D9E75" stroke="white" stroke-width="3" filter="url(#softShadow)"/>
-          <text x="165" y="400" text-anchor="middle" font-size="14">📗</text>
-          <text x="165" y="424" text-anchor="middle" font-size="10" font-weight="700" fill="#085041" font-family="Noto Sans KR, sans-serif">해피니스</text>
+        <!-- 작은책방 마커 (비북스 중심) -->
+        <g class="map-marker featured" data-store="bbooks" onclick="showMapStore('bbooks')" role="button" tabindex="0">
+          <circle cx="400" cy="250" r="22" fill="#1D9E75" stroke="#BA7517" stroke-width="3" filter="url(#softShadow)"/>
+          <text x="400" y="256" text-anchor="middle" font-size="16">📗</text>
+          <text x="400" y="286" text-anchor="middle" font-size="11" font-weight="700" fill="#085041" font-family="Noto Sans KR, sans-serif">비북스</text>
         </g>
 
         <g class="map-marker" data-store="moalboal" onclick="showMapStore('moalboal')" role="button" tabindex="0">
-          <circle cx="235" cy="155" r="18" fill="#1D9E75" stroke="white" stroke-width="3" filter="url(#softShadow)"/>
-          <text x="235" y="160" text-anchor="middle" font-size="14">📗</text>
-          <text x="235" y="184" text-anchor="middle" font-size="10" font-weight="700" fill="#085041" font-family="Noto Sans KR, sans-serif">모알보알</text>
-        </g>
-
-        <g class="map-marker featured" data-store="bbooks" onclick="showMapStore('bbooks')" role="button" tabindex="0">
-          <circle cx="355" cy="295" r="20" fill="#1D9E75" stroke="#BA7517" stroke-width="3" filter="url(#softShadow)"/>
-          <text x="355" y="301" text-anchor="middle" font-size="15">📗</text>
-          <text x="355" y="328" text-anchor="middle" font-size="10" font-weight="700" fill="#085041" font-family="Noto Sans KR, sans-serif">비북스</text>
+          <circle cx="368" cy="228" r="16" fill="#1D9E75" stroke="white" stroke-width="3" filter="url(#softShadow)"/>
+          <text x="368" y="233" text-anchor="middle" font-size="13">📗</text>
+          <text x="368" y="210" text-anchor="middle" font-size="10" font-weight="700" fill="#085041" font-family="Noto Sans KR, sans-serif">모알보알</text>
         </g>
 
         <g class="map-marker" data-store="heddeul" onclick="showMapStore('heddeul')" role="button" tabindex="0">
-          <circle cx="435" cy="310" r="18" fill="#1D9E75" stroke="white" stroke-width="3" filter="url(#softShadow)"/>
-          <text x="435" y="315" text-anchor="middle" font-size="14">📗</text>
-          <text x="435" y="339" text-anchor="middle" font-size="10" font-weight="700" fill="#085041" font-family="Noto Sans KR, sans-serif">헤엄치는뜰</text>
+          <circle cx="458" cy="258" r="16" fill="#1D9E75" stroke="white" stroke-width="3" filter="url(#softShadow)"/>
+          <text x="458" y="263" text-anchor="middle" font-size="13">📗</text>
+          <text x="458" y="286" text-anchor="middle" font-size="10" font-weight="700" fill="#085041" font-family="Noto Sans KR, sans-serif">헤엄치는뜰</text>
+        </g>
+
+        <g class="map-marker" data-store="happiness" onclick="showMapStore('happiness')" role="button" tabindex="0">
+          <circle cx="210" cy="310" r="16" fill="#1D9E75" stroke="white" stroke-width="3" filter="url(#softShadow)"/>
+          <text x="210" y="315" text-anchor="middle" font-size="13">📗</text>
+          <text x="210" y="338" text-anchor="middle" font-size="10" font-weight="700" fill="#085041" font-family="Noto Sans KR, sans-serif">해피니스</text>
         </g>
 
         <g class="map-marker" data-store="hwamok" onclick="showMapStore('hwamok')" role="button" tabindex="0">
-          <circle cx="515" cy="195" r="18" fill="#1D9E75" stroke="white" stroke-width="3" filter="url(#softShadow)"/>
-          <text x="515" y="200" text-anchor="middle" font-size="14">📗</text>
-          <text x="515" y="224" text-anchor="middle" font-size="10" font-weight="700" fill="#085041" font-family="Noto Sans KR, sans-serif">화목이네</text>
+          <circle cx="355" cy="168" r="16" fill="#1D9E75" stroke="white" stroke-width="3" filter="url(#softShadow)"/>
+          <text x="355" y="173" text-anchor="middle" font-size="13">📗</text>
+          <text x="355" y="196" text-anchor="middle" font-size="10" font-weight="700" fill="#085041" font-family="Noto Sans KR, sans-serif">화목이네</text>
         </g>
 
         <g class="map-marker" data-store="bright" onclick="showMapStore('bright')" role="button" tabindex="0">
-          <circle cx="585" cy="255" r="18" fill="#1D9E75" stroke="white" stroke-width="3" filter="url(#softShadow)"/>
-          <text x="585" y="260" text-anchor="middle" font-size="14">📗</text>
-          <text x="585" y="284" text-anchor="middle" font-size="10" font-weight="700" fill="#085041" font-family="Noto Sans KR, sans-serif">빛나는친구들</text>
+          <circle cx="395" cy="128" r="16" fill="#1D9E75" stroke="white" stroke-width="3" filter="url(#softShadow)"/>
+          <text x="395" y="133" text-anchor="middle" font-size="13">📗</text>
+          <text x="395" y="108" text-anchor="middle" font-size="10" font-weight="700" fill="#085041" font-family="Noto Sans KR, sans-serif">빛나는친구들</text>
+        </g>
+
+        <g class="map-marker" data-store="spoon" onclick="showMapStore('spoon')" role="button" tabindex="0">
+          <circle cx="145" cy="268" r="16" fill="#1D9E75" stroke="white" stroke-width="3" filter="url(#softShadow)"/>
+          <text x="145" y="273" text-anchor="middle" font-size="13">📗</text>
+          <text x="145" y="296" text-anchor="middle" font-size="10" font-weight="700" fill="#085041" font-family="Noto Sans KR, sans-serif">글한스푼</text>
         </g>
 
         <!-- 나침반 -->
